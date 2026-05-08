@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basket</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+            <h1 class="logo"><a href="index.html">BookStore</a></h1>
+            <nav class="nav">
+                <ul id="nav-list">
+                    <li><a href="index.html">Каталог</a></li>
+                </ul>
+            </nav>
+    </header>
+    <main>
+        <div class="basket-container">
+            <h1 class="basket_title">Корзина</h1>
+            <div class="basket-content">
+                <div class="basket-items">
+                    <div class="basket-item_grid"></div>
+                </div>
+    
+                <div class="basket-summary">
+                    <h3 class="summary-title">Итого</h3>
+                    <div class="summary-row">
+                        <span class="summary-count">Товары (0)</span>
+                        <span class="summary-price">0 ₽</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Всего</span>
+                        <span class="summary-total">0 ₽</span>
+                    </div>
+                    <button class="checkout-btn">Оформить заказ</button>
+                </div>
+            </div>
+
+            <!-- Модальное окно подтверждения -->
+            <div id="payment-modal" class="payment-modal">
+                <div class="payment-modal-content">
+                    <h3 class="payment-modal-title">Подтверждение оплаты</h3>
+                    <p class="payment-modal-text">Вы уверены, что хотите оплатить заказ?</p>
+                    <div class="payment-modal-buttons">
+                        <button class="payment-btn payment-btn-yes" id="confirm-payment">Да</button>
+                        <button class="payment-btn payment-btn-no" id="cancel-payment">Нет</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

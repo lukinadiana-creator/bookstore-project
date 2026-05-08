@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+            <h1 class="logo"><a href="index.html">BookStore</a></h1>
+            <nav class="nav">
+                <ul id="nav-list">
+                    <li><a href="index.html">Каталог</a></li>
+                </ul>
+            </nav>
+    </header>
+
+    <main>
+        <div class="profile-container">
+            <h1 class="profile_title">Личный кабинет</h1>
+            
+            <div class="profile-content">
+                <div class="profile-main">
+                    <div class="profile-info">
+                        <div class="info-grid">
+                            <div class="info-field">
+                                <div class="info-label">Имя</div>
+                                <div class="info-value" id="user-name"></div>
+                            </div>
+                            <div class="info-field">
+                                <div class="info-label">Email</div>
+                                <div class="info-value" id="user-email"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="order-title">История заказов</h2>
+                    <div class="profile-orders">
+                        <!-- <div class="order-card">
+                            <div class="order-header">
+                                <div class="order-date">15.04.2026</div>
+                                <div class="order-status delivered">Доставлен</div>
+                                <div class="order-total">1240 ₽</div>
+                            </div>
+                            <div class="order-items">
+                                <div class="order-item">
+                                    <span class="item-name">Мастер и Маргарита</span>
+                                    <span class="item-quantity">× 1</span>
+                                    <span class="item-price">450 ₽</span>
+                                </div>
+                                <div class="order-item">
+                                    <span class="item-name">Три товарища</span>
+                                    <span class="item-quantity">× 1</span>
+                                    <span class="item-price">420 ₽</span>
+                                </div>
+                                <div class="order-item">
+                                    <span class="item-name">Маленький принц</span>
+                                    <span class="item-quantity">× 1</span>
+                                    <span class="item-price">320 ₽</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div class="order-date">28.03.2026</div>
+                                <div class="order-status delivered">Доставлен</div>
+                                <div class="order-total">970 ₽</div>
+                            </div>
+                            <div class="order-items">
+                                <div class="order-item">
+                                    <span class="item-name">Преступление и наказание</span>
+                                    <span class="item-quantity">× 1</span>
+                                    <span class="item-price">520 ₽</span>
+                                </div>
+                                <div class="order-item">
+                                    <span class="item-name">Алиса в стране чудес</span>
+                                    <span class="item-quantity">× 1</span>
+                                    <span class="item-price">350 ₽</span>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            async function loadProfile() {
+                try {
+                    const response = await fetch('http://localhost:8080/me', {
+                        method: 'GET',
+                        credentials: 'include'
+                    });
+        
+                    if (response.status === 401) {
+                        window.location.href = 'sign.html';
+                        return;
+                    }
+        
+                    const user = await response.json();
+        
+                    document.getElementById('user-name').textContent = user.name;
+                    document.getElementById('user-email').textContent = user.email;
+        
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        
+            loadProfile();
+        </script>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

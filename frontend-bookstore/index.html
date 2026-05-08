@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookStore</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+            <h1 class="logo"><a href="index.html">BookStore</a></h1>
+            <nav class="nav">
+                <ul id="nav-list">
+                    <li><a href="index.html">Каталог</a></li>
+                </ul>
+            </nav>
+    </header>
+
+    <main>
+        <div class="search-book">
+            <form class="search-book-form" action="index.html">
+                <input type="text" id="book" name="book" class="search-form_input" placeholder="Поиск по названию или автору...">
+            </form>
+        </div>
+
+        <div class="books">
+            <div class="price-filter">
+                <h4 class="price-filter_title">ЦЕНА</h4>
+                <div class="price-inputs">
+                    <input type="number" class="price-input price-input_min" placeholder="от">
+                    <span class="price-dash">—</span>
+                    <input type="number" class="price-input price-input_max" placeholder="до">
+                </div>
+            </div>  
+            <div class="books_grid">
+                <div class="card-books"></div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Вход</button>
+                    <button class="auth-tab" data-tab="register">Регистрация</button>
+                </div>
+                
+                <form class="auth-form login-form" id="login-form">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="ivan@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="auth-btn">Войти</button>
+                </form>
+                
+                <form class="auth-form register-form" id="register-form" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Имя пользователя</label>
+                        <input type="text" name="name" class="form-input" placeholder="Иван Петров">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="ivan@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-input" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="auth-btn">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+        
+        <script>
+            const tabs = document.querySelectorAll('.auth-tab');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+        
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+        
+                    if (tab.dataset.tab === 'login') {
+                        loginForm.style.display = 'block';
+                        registerForm.style.display = 'none';
+                    } else {
+                        loginForm.style.display = 'none';
+                        registerForm.style.display = 'block';
+                    }
+                });
+            });
+        
+            // LOGIN
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const email = loginForm.email.value;
+                const password = loginForm.password.value;
+
+                const response = await fetch('http://localhost:8080/login', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+                });
+
+                if (response.ok) {
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Неверный email или пароль');
+                }
+            });
+        
+            // REGISTER
+            registerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const name = registerForm.name.value;
+                const email = registerForm.email.value;
+                const password = registerForm.password.value;
+
+                const response = await fetch('http://localhost:8080/registration', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body:
+                        `name=${encodeURIComponent(name)}` +
+                        `&email=${encodeURIComponent(email)}` +
+                        `&password=${encodeURIComponent(password)}`
+                });
+
+                if (response.ok) {
+                    alert('Регистрация успешна');
+                } else {
+                    alert('Ошибка регистрации');
+                }
+            });
+        </script>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
