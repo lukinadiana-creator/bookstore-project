@@ -1,0 +1,12 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+backend/.idea/
+
+# ОС
+.DS_Store
+Thumbs.db
+
+# Frontend
+frontend/.vscode/
